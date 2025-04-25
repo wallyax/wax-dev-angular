@@ -21,10 +21,15 @@ const runner = (code, options) => {
         'Content-Type': 'application/json',
         'Authorization': `${options.apiKey}`,
         },
-        body: JSON.stringify({ element: code, rules: options.rules, isLinter: "false" }),
+        body: JSON.stringify({ element: code, rules: options.rules, isLinter: "true" }),
       })
-      .then(response => response.json())
-      .then((data) => {
+      .then(async (response) => {
+        const data = await response.json();
+        if (!response.ok) {
+          console.groupCollapsed('%cAccessibility Check Results', 'color:#FED600;');
+          console.log(data?.error);
+          return resolve([{ error: data?.error || `Error: ${response.status}` }]);
+        }
         console.groupCollapsed('%cAccessibility Check Results', 'color:#FED600;');
         if(data && data?.responseCode==429){
           console.log('Too Many Requests')

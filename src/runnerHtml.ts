@@ -19,7 +19,7 @@ const runner = function (code: String, options: Options) {
       'Content-Type': 'application/json',
       'Authorization': `${config.apiKey}`,
       },
-      body: JSON.stringify({ element: code, rules: config.rules, isLinter: "false" }),
+      body: JSON.stringify({ element: code, rules: config.rules, isLinter: "true" }),
     })
       .then((response) => response.json())
       .then((data) => {
