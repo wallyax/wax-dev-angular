@@ -1,6 +1,6 @@
 {
   "name": "@wally-ax/wax-dev-angular",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
